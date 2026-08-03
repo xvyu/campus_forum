@@ -226,28 +226,3 @@ pytest tests/ -v
 ```
 
 错误码规则：`1xxx` 通用 / `2xxx` 认证 / `3xxx` 业务 / `4xxx` 后台 / `5xxx` 第三方
-
-## 当前进度（V0.1）
-
-### ✅ 已完成
-- 后端：9 蓝图 + 19/19 测试 + 9 张表
-- 前端：10 页面 + 递归评论组件 + 搜索页
-- 功能：认证/发帖/评论/楼中楼/点赞/收藏/搜索/个人中心/马甲/管理后台/忘记密码
-- 内网穿透适配
-
-### ⏳ 待办
-- V01-T32 Docker Compose 部署（占位文件已建）
-- V0.3 WebSocket 实时推送
-- V0.4 对象存储 + 学校切换
-
-## 文档
-
-- [PRD-产品需求文档.md](docs/PRD-产品需求文档.md)
-- [Roadmap-产品路线图.md](docs/Roadmap-产品路线图.md)
-- [Architecture-系统架构设计文档.md](docs/Architecture-系统架构设计文档.md)
-- [ER-Diagram-数据库设计文档.md](docs/ER-Diagram-数据库设计文档.md)
-- [TaskList-任务分解清单.md](docs/TaskList-任务分解清单.md)
-
-## 许可
-
-MIT License - 详见 [LICENSE](LICENSE)
