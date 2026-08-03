@@ -1,0 +1,17 @@
+# =====================================================
+# Docker Compose 占位文件
+# 完整实现在 V01-T32（V0.1 后期），Day1 不做容器化
+# 计划服务:
+#   - mysql:8.0     (数据库)
+#   - redis:7-alpine (缓存/限流)
+#   - backend       (Flask + Gunicorn)
+#   - frontend      (Nginx 静态文件)
+# =====================================================
+# 当前为空配置，仅作占位
+version: "3.8"
+
+services:
+  # 占位 - T32 任务补全
+  placeholder:
+    image: hello-world
+    container_name: campus_forum_placeholder
