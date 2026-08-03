@@ -70,13 +70,21 @@ def get_profile():
 
     anons = AnonymousIdMapping.query.filter_by(user_id=user_id, is_active=1).all()
 
-    # 实时统计：发布帖子（去除 hide 的）
-    all_posts = Post.query.filter_by(user_id=user_id).all()
+    # 实时统计：发布帖子（去除已删除的 + 去除 hide 的）
+    all_posts = Post.query.filter_by(user_id=user_id, is_deleted=0).all()
     post_count = sum(1 for p in all_posts if not _is_hidden(user_id, "post", p.id))
 
-    # 实时统计：发表评论（去除 hide 的）
-    all_comments = Comment.query.filter_by(user_id=user_id).all()
-    comment_count = sum(1 for c in all_comments if not _is_hidden(user_id, "comment", c.id))
+    # 实时统计：发表评论（去除已删除的 + 去除原帖已删的 + 去除 hide 的）
+    all_comments = Comment.query.filter_by(user_id=user_id, is_deleted=0).all()
+    comment_count = 0
+    for c in all_comments:
+        if _is_hidden(user_id, "comment", c.id):
+            continue
+        # 排除原帖已删的评论（评论本身没删但帖子已删）
+        post = Post.query.get(c.post_id) if c.post_id else None
+        if post and post.is_deleted == 1:
+            continue
+        comment_count += 1
 
     # 实时统计：被点赞的帖子数（不同帖子，且 is_deleted=0）
     liked_post_count = Post.query.filter(
